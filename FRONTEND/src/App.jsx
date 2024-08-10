@@ -1,32 +1,21 @@
-import './App.css'
-import axios from 'axios'
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./Home";
+import Success from "./Success";
 function App() {
-  async function handleClick(e) {
-    e.preventDefault()
-    await axios.post('http://localhost:3000/register', {
-      name: 'Fred',
-      age: 25
-    })
-      .then(function (response) {
-        console.log(response.data)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-    console.log('Button clicked')
-  }
+  let router = createBrowserRouter([
+    {
+      path: "",
+      element: <Home />,
+    },
+    {
+      path: "/success",
+      element: <Success />,
+    },
+  ]);
   return (
     <>
-      <div>
-        <h1>SPORTS FEST</h1>
-        <form>
-          <input type="text" placeholder="Enter your name" />
-          <button onClick={handleClick}>pay 100/-</button>
-        </form>
-      </div>
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
-
-export default App
+export default App;
