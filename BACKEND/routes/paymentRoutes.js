@@ -1,12 +1,14 @@
 const express = require("express");
-const {register, success} = require("../controllers/paymentController");
-const {getStats} = require("../controllers/statsController");
-const {Category} = require("../controllers/categoryController");
+const asyncHandler = require("express-async-handler");
+const { register, success } = require("../controllers/paymentController");
+const { getStats } = require("../controllers/statsController");
+const { Category } = require("../controllers/categoryController");
 
 const router = express.Router();
 
-router.post("/register", register);
-router.post("/success", success);
-router.get("/stats",getStats)
-router.get('/teams/:category',Category)
+router.post("/register", asyncHandler(register));
+router.post("/success", asyncHandler(success));
+router.get("/stats", asyncHandler(getStats));
+router.get('/teams/:category', asyncHandler(Category));
+
 module.exports = router;

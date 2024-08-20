@@ -4,10 +4,10 @@ function Failure(){
     console.log(location.state);
 
     return (
-        <div>
-            <h1>Failure</h1>
-            <p>{location.state?.error}</p>
-            <p>{location.state?.reason}</p>
+        <div className="bg-red-400 w-96 rounded m-auto p-8">
+            <h1 className="text-5xl text-gray-200 m-auto pt-2 w-fit">Failure</h1>
+            <p className="text-xl pt-3">{location.state?.error}</p>
+            <p className="text-xl pt-3">{location.state?.reason}</p>
         </div>
     )
 }

@@ -19,13 +19,12 @@ function Sports() {
   };
 
   async function formSubmit(data) {
-    const payersContact = {
-      name: data.payersContact.name,
-      email: data.payersContact.email,
-      mobileNumber: data.payersContact.mobileNumber,
-    };
-    console.log(payersContact);
-    paymentHandler(data, selectedSport.price, navigate, payersContact);
+    if (data.substitutes) {
+      data.substitutes = data.substitutes.filter(
+        (sub) => sub.name || sub.collegeID || sub.gender
+      );
+    }
+    paymentHandler(data, selectedSport.price, navigate);
   }
 
   return (

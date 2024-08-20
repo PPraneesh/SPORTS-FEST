@@ -1,7 +1,9 @@
 import axios from "axios";
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function Stats() {
     let data = null;
-    axios.get("http://localhost:3000/api/stats")
+    axios.get(`${server_url}/stats`)
     .then((res)=>{
         data = res.data;
     })

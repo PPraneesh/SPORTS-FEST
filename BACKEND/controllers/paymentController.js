@@ -1,6 +1,8 @@
 const db = require("../config/db");
 const razorpay = require("../config/razorpayconfig");
 const { updateStats } = require("./statsController");
+const { mailer } = require("../services/mailer");
+
 exports.register = (req, res) => {
   var options = {
     amount: req.body.amount * 100,
@@ -32,7 +34,6 @@ exports.register = (req, res) => {
   }
 };
 exports.success = async (req, res) => {
-  console.log("success ", req.body);
   const category = db.collection(req.body.category);
   const team = await category.where("order_id", "==", req.body.order_id).get();
   if (team.empty) {
@@ -43,6 +44,7 @@ exports.success = async (req, res) => {
       registrationData = doc.data();
       category.doc(doc.id).update({
         payment_status: true,
+        payment_id: req.body.payment_id,
       });
     });
     console.log("registration data", registrationData);
@@ -51,6 +53,7 @@ exports.success = async (req, res) => {
         registrationData.category === "Accommodation" ? "accommodation" : "sports";
       await updateStats(registrationData, regType);
       console.log("payment success and stats updated");
+      await mailer(registrationData.payersContact.email, registrationData.order_id,registrationData.payersContact.name,registrationData.amount);
       res.send({
         status: true,
         message: "payment success and updated in database",

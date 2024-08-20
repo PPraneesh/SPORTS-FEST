@@ -18,12 +18,7 @@ export default function Accommodation() {
     data.category = "Accommodation";
     console.log("Accommodation data: ");
     console.log(data);
-    const payersContact = {
-      name: data.name,
-      mobileNumber: data.mobileNumber,
-      email: data.email,
-    };
-    paymentHandler(data, accommodationPrice, navigate,payersContact );
+    paymentHandler(data, accommodationPrice, navigate );
   };
 
   return (
@@ -36,9 +31,9 @@ export default function Accommodation() {
           className="form-input"
             type="text"
             id="name"
-            {...register("name", { required: "Name is required" })}
+            {...register("payersContact.name", { required: "Name is required" })}
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.payersContact?.name && <span>{errors.payersContact.name.message}</span>}
         </div>
 
         <div>
@@ -47,7 +42,7 @@ export default function Accommodation() {
             className="form-input"
             type="tel"
             id="mobileNumber"
-            {...register("mobileNumber", {
+            {...register("payersContact.mobileNumber", {
               required: "Mobile number is required",
               pattern: {
                 value: /^\d{10}$/,
@@ -55,7 +50,7 @@ export default function Accommodation() {
               },
             })}
           />
-          {errors.mobileNumber && <span>{errors.mobileNumber.message}</span>}
+          {errors.payersContact?.mobileNumber && <span>{errors.payersContact.mobileNumber.message}</span>}
         </div>
 
         <div>
@@ -64,7 +59,7 @@ export default function Accommodation() {
             className="form-input"
             type="email"
             id="email"
-            {...register("email", {
+            {...register("payersContact.email", {
               required: "Email is required",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -72,7 +67,7 @@ export default function Accommodation() {
               },
             })}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {errors.payersContact?.email && <span>{errors.payersContact.email.message}</span>}
         </div>
         <div>
           <label className="form-label" htmlFor="gender">Gender:</label>

@@ -12,6 +12,11 @@ app.use(cors());
 
 app.use('/api', paymentRoutes);
 
+// for handling errors
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.send('Something broke :/ Contact developer :)');
+});
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
