@@ -43,7 +43,7 @@ function Sports() {
           required: "Please select a sport",
         })}
       >
-        <option value="">Select a sport</option>
+        <option value="" hidden>Select a sport</option>
         {Object.keys(sports).map((sportKey) => (
           <option key={sportKey} value={sportKey}>
             {sportKey.replace(/_/g, " ")}
