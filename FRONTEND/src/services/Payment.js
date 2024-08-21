@@ -3,18 +3,15 @@ const razorpay_key = import.meta.env.VITE_RAZORPAY_KEY;
 const server_url = import.meta.env.VITE_SERVER_URL;
 
 export default function paymentHandler(e, price, navigate) {
-  console.log(e);
   axios
-    .post(`${server_url}/register`, {
-      category: e.category,
-      amount: price,
-      ...e,
-    })
-    .then((res) => {
+  .post(`${server_url}/register`, {
+    category: e.category,
+    amount: price,
+    ...e,
+  })
+  .then((res) => {
       if (res.data.status) {
         // for register route, which saves data in database
-        console.log("in axios", res.data);
-        alert(`order id Successful ${res.data.order_id}`);
         var options = {
           key: razorpay_key, // Enter the Key ID generated from the Dashboard
           amount: price * 100,
@@ -49,6 +46,11 @@ export default function paymentHandler(e, price, navigate) {
                 if (res.data.status) {
                   navigate("/success", {
                     state: { data: response, success: true },
+                  })
+                }
+                else{
+                  navigate("/failure", {
+                    state: { error: "Error in backend, if you receive confirmation mail don't worry you data has been updated.." },
                   });
                   console.log(res.data);
                   console.log(response.razorpay_order_id);
@@ -87,8 +89,12 @@ export default function paymentHandler(e, price, navigate) {
         });
         rzp1.open();
       }
-    })
-    .catch((err) => {
-      console.log(err);
+      else{
+       alert(res.data.message);
+      }
+    }
+  )
+  .catch((err) => {
+    console.log(err);
     });
 }
