@@ -20,12 +20,19 @@ exports.register = async (req, res) => {
           ...req.body,
           payment_status: false,
           order_id: order.id,
-        });
-        res.send({
-          status: true,
-          order_id: order.id,
-          category: req.body.category,
-        });
+        }).then(() => {
+      res.send({
+        status: true,
+        order_id: order.id,
+        category: req.body.category,
+      });
+    }).catch((error) => {
+      console.error('Error adding document:', error);
+      res.send({
+        status: false,
+        data: req.body,
+      });
+    });
       }
     });
   } catch (err) {
