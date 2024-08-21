@@ -3,7 +3,7 @@ const razorpay = require("../config/razorpayconfig");
 const { updateStats } = require("./statsController");
 const { mailer } = require("../services/mailer");
 
-exports.register = (req, res) => {
+exports.register = async (req, res) => {
   var options = {
     amount: req.body.amount * 100,
     currency: "INR",
@@ -16,7 +16,7 @@ exports.register = (req, res) => {
         console.log(err);
         return res.send({ status: false, data: req.body });
       } else {
-        category.add({
+       await category.add({
           ...req.body,
           payment_status: false,
           order_id: order.id,
