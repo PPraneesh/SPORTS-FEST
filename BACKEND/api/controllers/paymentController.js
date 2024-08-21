@@ -11,7 +11,7 @@ exports.register = async (req, res) => {
   };
   try {
     const category = db.collection(req.body.category);
-    const order = razorpay.orders.create(options, function (err, order) {
+    const order = razorpay.orders.create(options,async function (err, order) {
       if (err) {
         console.log(err);
         return res.send({ status: false, data: req.body });
