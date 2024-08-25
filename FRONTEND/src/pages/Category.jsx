@@ -15,7 +15,7 @@ export default function Category() {
     axios
       .get(`${server_url}/teams/${category}`)
       .then((res) => {
-        setTeams(res.data.teams);
+        setTeams(res.data.teams.filter((team) => team.payment_status));
         console.log(res.data.teams);
         setLoading(false);
       })
@@ -65,7 +65,6 @@ export default function Category() {
                   {team?.mainplayers?.map((player, index) => (
                     <li key={index} className="p-4 bg-gray-50 rounded-lg">
                       <p>Name: {player.name}</p>
-                      <p>Gender: {player.gender}</p>
                       <p>Email: {player.email}</p>
                       <p>Phone: {player.phone}</p>
                       <p>College ID: {player.collegeID}</p>
@@ -135,6 +134,12 @@ export default function Category() {
               </p>
               <p className="text-lg font-medium mb-4">
               Payment ID: {team?.payment_id}
+              </p>
+              <p className="text-lg font-medium mb-4">
+                Order ID: {team.order_id}
+              </p>
+              <p className="text-lg font-medium mb-4">
+                Payment Status: {team.payment_status ? "Paid" : "Pending"}
               </p>
             </li>
           ))}

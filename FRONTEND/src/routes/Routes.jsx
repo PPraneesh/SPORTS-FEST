@@ -6,9 +6,10 @@ import Failure from "../pages/Failure";
 import Category from "../pages/Category";
 import Sports from "../pages/Sports";
 import Accommodation from "../pages/Accommodation";
+import { LoadingProvider } from "../context/LoadingContext";
 import Root from "../pages/Root";
 
-function App() {
+function Routes() {
   let router = createBrowserRouter([
     {
       path: "/",
@@ -45,8 +46,10 @@ function App() {
   ]);
   return (
     <>
+    <LoadingProvider>
       <RouterProvider router={router} />
+    </LoadingProvider>
     </>
   );
 }
-export default App;
+export default Routes;

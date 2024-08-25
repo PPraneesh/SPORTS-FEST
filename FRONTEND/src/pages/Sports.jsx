@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import sports from "../data/data";
 import paymentHandler from "../services/Payment";
 import { useNavigate } from "react-router-dom";
+import LoadingContext from "../context/LoadingContext";
 import "../index.css";
 
 function Sports() {
+  const context = useContext(LoadingContext);
+
   const navigate = useNavigate();
   const {
     register,
@@ -21,13 +24,20 @@ function Sports() {
   async function formSubmit(data) {
     if (data.substitutes) {
       data.substitutes = data.substitutes.filter(
-        (sub) => sub.name || sub.collegeID || sub.gender
+        (sub) => sub.name || sub.collegeID
       );
     }
+
+    data.mainplayers = data.mainplayers.filter(
+      (player) => player.name || player.collegeID 
+    );
+    context.setLoading(true);
     paymentHandler(data, selectedSport.price, navigate);
+
   }
 
-  return (
+  return (<>{
+    context.loading? <span className="loader absolute top-1/2 left-1/2	"></span>:
     <form
       className="w-[90%] lg:w-2/4 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow"
       onSubmit={handleSubmit(formSubmit)}
@@ -112,14 +122,14 @@ function Sports() {
 
               <input
                 type="tel"
-                placeholder={`Enter player ${i + 1} phone number (+91)`}
+                placeholder={`Enter player ${i + 1} phone number`}
                 className="form-input"
                 {...register(`mainplayers.${i}.phone`, {
                   required: "Phone number is required",
                   pattern: {
-                    value: /^\+91\d{10}$/,
+                    value: /^\d{10}$/,
                     message:
-                      "Phone number must start with +91 and have 10 digits",
+                      "Phone number must have 10 digits",
                   },
                 })}
               />
@@ -127,21 +137,6 @@ function Sports() {
                 <p className="form-error">{errors.mainplayers[i].phone.message}</p>
               )}
             </>
-          )}
-
-          <select
-            className="form-select"
-            {...register(`mainplayers.${i}.gender`, {
-              required: "Gender is required",
-            })}
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          {errors.mainplayers?.[i]?.gender && (
-            <p className="form-error">{errors.mainplayers[i].gender.message}</p>
           )}
         </div>
       ))}
@@ -166,16 +161,6 @@ function Sports() {
             placeholder={`Enter substitute ${i + 1} college ID`}
             {...register(`substitutes.${i}.collegeID`)}
           />
-
-          <select
-            className="form-select"
-            {...register(`substitutes.${i}.gender`)}
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
         </div>
       ))}
       </>)}
@@ -192,7 +177,7 @@ function Sports() {
         {errors.payersContact?.name && (
           <p className="form-error">{errors.payersContact.name.message}</p>
         )}
-        {/* email and mobile */}
+
         <input
           type="email"
           placeholder="Enter your email"
@@ -210,13 +195,13 @@ function Sports() {
         )}
         <input
           type="tel"
-          placeholder="Enter your phone number (+91)"
+          placeholder="Enter your phone number "
           className="form-input"
           {...register("payersContact.mobileNumber", {
             required: "Phone number is required",
             pattern: {
-              value: /^\+91\d{10}$/,
-              message: "Phone number must start with +91 and have 10 digits",
+              value: /^\d{10}$/,
+              message: "Phone number must have 10 digits",
             },
           })}
         />
@@ -225,11 +210,11 @@ function Sports() {
         )}
       </div>
       <h2>You will be paying {selectedSport.price}/-</h2>
-      <button className="submit-button" type="submit">
-        Pay
+      <button className="submit-button" type="submit" disabled={context.loading} >
+        {context.loading? "Loading..":"Pay"}
       </button>
-    </form>
-  );
+    </form>}
+    </>);
 }
 
 export default Sports;

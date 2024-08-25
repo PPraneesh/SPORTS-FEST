@@ -2,7 +2,7 @@ import axios from "axios";
 const razorpay_key = import.meta.env.VITE_RAZORPAY_KEY;
 const server_url = import.meta.env.VITE_SERVER_URL;
 
-export default function paymentHandler(e, price, navigate) {
+export default function paymentHandler(e, price, navigate,context) {
   axios
   .post(`${server_url}/register`, {
     category: e.category,
@@ -16,7 +16,7 @@ export default function paymentHandler(e, price, navigate) {
           key: razorpay_key, // Enter the Key ID generated from the Dashboard
           amount: price * 100,
           currency: "INR",
-          name: "SPORTS FEST",
+          name: "VNR VJIET",
           description: "Pay for the sports fest",
           image: "https://example.com/your_logo",
           prefill: {
@@ -64,6 +64,7 @@ export default function paymentHandler(e, price, navigate) {
                   state: { error: "Payment confirmation failed" },
                 });
               });
+              context.setLoading(false);
           },
           notes: {
             name: e.payersContact.name,

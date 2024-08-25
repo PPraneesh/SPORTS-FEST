@@ -108,23 +108,33 @@ exports.updateStats = async (registrationData, type) => {
 function updateSportsStats(stats, data) {
   const totalPlayers = data.mainplayers.length + (data.substitutes ? data.substitutes.length : 0);
   stats.totalStudents.total += totalPlayers;
-  data.mainplayers.forEach((player) => {
-    if (player.gender === 'male' || player.gender === 'female') {
-      stats.totalStudents[player.gender]++;
-    }
-  });
-  if (data.substitutes) {
-    data.substitutes.forEach((player) => {
-      if (player.gender === 'male' || player.gender === 'female') {
-        stats.totalStudents[player.gender]++;
-      }
-    });
-  }
+
+  // data.mainplayers.forEach((player) => {
+  //   if (player.gender === 'male' || player.gender === 'female') {
+  //     stats.totalStudents[player.gender]++;
+  //   }
+  // });
+  // if (data.substitutes) {
+  //   data.substitutes.forEach((player) => {
+  //     if (player.gender === 'male' || player.gender === 'female') {
+  //       stats.totalStudents[player.gender]++;
+  //     }
+  //   });
+  // }
   
   const sportIndex = stats.sportParticipation.findIndex(sport => sport.category === data.category);
   if (sportIndex !== -1) {
-    stats.sportParticipation[sportIndex].teams++;
-    stats.sportParticipation[sportIndex].revenue += data.amount;
+    let sport = stats.sportParticipation[sportIndex];
+    console.log(sport)
+    sport.teams++;
+    sport.revenue += data.amount;
+    console.log(sport.category[sport.category.length - 1])
+    if(sport.category[sport.category.length - 1] === "M") {
+      stats.totalStudents["male"] += totalPlayers;
+    }
+    else {
+      stats.totalStudents["female"] += totalPlayers;
+    }
   } else {
     console.warn(`Sport category ${data.category} not found in sportParticipation`);
     stats.sportParticipation.push({category: data.category, teams: 1, revenue: data.amount});
