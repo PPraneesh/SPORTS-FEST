@@ -1,5 +1,5 @@
 const sports = {
-  "Badminton_Singles-M": {
+  "Badminton_Singles-M": { //
     price: 500,
     mainplayers: 1,
     substitutes: 0,
@@ -7,7 +7,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Badminton_Singles-W": {
+  "Badminton_Singles-W": { //
     price: 500,
     mainplayers: 1,
     substitutes: 0,
@@ -15,7 +15,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Badminton_Doubles-M": {
+  "Badminton_Doubles-M": { //
     price: 1000,
     mainplayers: 2,
     substitutes: 0,
@@ -23,7 +23,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Badminton_Doubles-W": {
+  "Badminton_Doubles-W": { //
     price: 1000,
     mainplayers: 2,
     substitutes: 0,
@@ -47,7 +47,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Chess_Singles-M": {
+  "Chess_Singles-M": { //
     price: 500,
     mainplayers: 1,
     substitutes: 0,
@@ -55,7 +55,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Cricket-M": {
+  "Cricket-M": { //
     price: 3500,
     mainplayers: 11,
     substitutes: 4,
@@ -63,7 +63,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Football-M": {
+  "Football-M": { //
     price: 2500,
     mainplayers: 11,
     substitutes: 4,
@@ -71,7 +71,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Kabaddi-M": {
+  "Kabaddi-M": { //
     price: 2000,
     mainplayers: 7,
     substitutes: 5,
@@ -79,7 +79,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Kabaddi-W": {
+  "Kabaddi-W": { //
     price: 2000,
     mainplayers: 7,
     substitutes: 5,
@@ -87,7 +87,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Table_Tennis_singles-M": {
+  "Table_Tennis_singles-M": { //
     price: 500,
     mainplayers: 1,
     substitutes: 0,
@@ -95,7 +95,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Table_Tennis_doubles-M": {
+  "Table_Tennis_doubles-M": { //
     price: 1000,
     mainplayers: 2,
     substitutes: 0,
@@ -103,7 +103,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Throwball-W": {
+  "Throwball-W": { // M
     price: 2000,
     mainplayers: 9,
     substitutes: 0,
@@ -111,7 +111,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Volleyball-M": {
+  "Volleyball-M": { //
     price: 2000,
     mainplayers: 6,
     substitutes: 4,
@@ -119,7 +119,7 @@ const sports = {
     date: "date",
     time: "",
   },
-  "Volleyball-W": {
+  "Volleyball-W": { //
     price: 2000,
     mainplayers: 6,
     substitutes: 4,

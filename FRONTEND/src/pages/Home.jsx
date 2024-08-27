@@ -1,15 +1,20 @@
 import sports from "../data/data";
 import "../index.css"
 import { Link } from "react-router-dom";
+import Carousel from "../components/Carousel";
 function Home() {
+  const arr = ['img1','img2','img3','img4','img5'];
   return (
     <div className="flex flex-col justify-center">
       <h1 className="text-4xl mx-auto">SPORTS FEST</h1>
+      <Carousel arr={arr}/>
 <div className="flex flex-wrap justify-center">
         {Object.keys(sports).map((sport) => {
           return (
             <div key={sport} className="w-[80%] md:w-1/4 p-6 m-4 bg-white border border-gray-200 rounded-lg shadow">
-              <img src={sports[sport].img} alt="no img" />
+            <div className="aspect-[5/3] w-full overflow-hidden">
+                <img src={`sports/${sport}.jpg`} alt="no img" className="w-full h-full object-cover"  />
+            </div>
 
               <h2 className="text-2xl">{sport}</h2>
               <p><b>Price: </b> {sports[sport].price}</p>

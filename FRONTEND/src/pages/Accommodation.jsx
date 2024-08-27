@@ -31,7 +31,7 @@ export default function Accommodation() {
         <span className="loader absolute top-1/2 left-1/2	"></span>
       ) : (
         <form
-          className="w-[90%] lg:w-2/4 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow"
+          className="w-[90%] lg:w-2/4 mx-auto my-8 p-6 bg-white border border-gray-200 rounded-lg shadow"
           onSubmit={handleSubmit(onSubmit)}
         >
           <h1 className="text-2xl pb-2">Accommodation</h1>

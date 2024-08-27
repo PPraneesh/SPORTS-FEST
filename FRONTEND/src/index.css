@@ -37,7 +37,7 @@
     @apply m-3 text-gray-900 text-xl md:text-2xl hover:text-gray-800 flex justify-center items-center gap-3 
   }
   .navlink{
-    @apply hover:border-gray-500 border-b-2 border-transparent
+    @apply hover:border-gray-100 border-b-2 border-transparent text-slate-100
   }
 }
 
