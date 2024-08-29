@@ -26,9 +26,9 @@ export default function Accommodation() {
   };
 
   return (
-    <div>
+    <>
       {context.loading ? (
-        <span className="loader absolute top-1/2 left-1/2	"></span>
+        <div><span className="loader"></span></div>
       ) : (
         <form
           className="w-[90%] lg:w-2/4 mx-auto my-8 p-6 bg-white border border-gray-200 rounded-lg shadow"
@@ -49,7 +49,7 @@ export default function Accommodation() {
               })}
             />
             {errors.payersContact?.name && (
-              <span>{errors.payersContact.name.message}</span>
+              <span className="form-error">{errors.payersContact.name.message}</span>
             )}
           </div>
 
@@ -70,7 +70,7 @@ export default function Accommodation() {
               })}
             />
             {errors.payersContact?.mobileNumber && (
-              <span>{errors.payersContact.mobileNumber.message}</span>
+              <span className="form-error">{errors.payersContact.mobileNumber.message}</span>
             )}
           </div>
 
@@ -91,7 +91,7 @@ export default function Accommodation() {
               })}
             />
             {errors.payersContact?.email && (
-              <span>{errors.payersContact.email.message}</span>
+              <span className="form-error">{errors.payersContact.email.message}</span>
             )}
           </div>
           <div>
@@ -108,7 +108,7 @@ export default function Accommodation() {
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
-            {errors.gender && <span>{errors.gender.message}</span>}
+            {errors.gender && <span className="form-error">{errors.gender.message}</span>}
           </div>
           <div>
             <label className="form-label" htmlFor="age">
@@ -130,7 +130,7 @@ export default function Accommodation() {
                 },
               })}
             />
-            {errors.age && <span>{errors.age.message}</span>}
+            {errors.age && <span className="form-error">{errors.age.message}</span>}
           </div>
 
           <div>
@@ -154,7 +154,7 @@ export default function Accommodation() {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </select>
-            {errors.bloodGroup && <span>{errors.bloodGroup.message}</span>}
+            {errors.bloodGroup && <span className="form-error">{errors.bloodGroup.message}</span>}
           </div>
 
           <div>
@@ -169,7 +169,7 @@ export default function Accommodation() {
                 required: "College name is required",
               })}
             />
-            {errors.collegeName && <span>{errors.collegeName.message}</span>}
+            {errors.collegeName && <span className="form-error">{errors.collegeName.message}</span>}
           </div>
 
           <div>
@@ -184,7 +184,7 @@ export default function Accommodation() {
                 required: "College ID / Roll Number is required",
               })}
             />
-            {errors.collegeId && <span>{errors.collegeId.message}</span>}
+            {errors.collegeId && <span className="form-error">{errors.collegeId.message}</span>}
           </div>
 
           <div>
@@ -204,7 +204,7 @@ export default function Accommodation() {
               <option value="3rd">3rd Year</option>
               <option value="4th">4th Year</option>
             </select>
-            {errors.yearOfStudy && <span>{errors.yearOfStudy.message}</span>}
+            {errors.yearOfStudy && <span className="form-error">{errors.yearOfStudy.message}</span>}
           </div>
 
           <button className="submit-button" type="submit" disabled={context.loading}>
@@ -212,6 +212,6 @@ export default function Accommodation() {
           </button>
         </form>
       )}
-    </div>
+    </>
   );
 }
