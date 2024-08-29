@@ -8,7 +8,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-const allowedOrigins = ['https://sports-fest.vercel.app/'];
+const allowedOrigins = ['https://sports-fest.vercel.app'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -16,7 +16,8 @@ app.use(cors({
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  credentials: true // Allow credentials to be sent with requests
 }));
 
 app.use('/api', paymentRoutes);
