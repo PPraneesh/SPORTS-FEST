@@ -34,7 +34,8 @@ export default function Accommodation() {
           className="w-[90%] lg:w-2/4 mx-auto my-8 p-6 bg-white border border-gray-200 rounded-lg shadow"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h1 className="text-2xl pb-2">Accommodation</h1>
+          <h1 className="text-2xl pb-2">Book an accommodation here</h1>
+          <h2>Note: Accomodation is free but you have to pay a caution deposit of 2000/- which will be refunded.</h2>
           <div>
             <label className="form-label" htmlFor="name">
               Full Name:

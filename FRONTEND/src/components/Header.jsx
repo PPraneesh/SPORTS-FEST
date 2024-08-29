@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export default function Header() {
   return (
-    <div className="header px-10 border-b-2 pb-1 bg-[#86322f] md:sticky md:top-0">
+    <div className="header px-10 border-b-2 pb-1 bg-[#86322f] z-50 md:mb-2 md:sticky md:top-0">
       <div className="header-title flex flex-col md:flex-row md:align-middle">
         <div className="flex flex-col justify-center items-center">
           <img src="VNRVJIET.png" alt="" className="w-16 aspect-square" />
