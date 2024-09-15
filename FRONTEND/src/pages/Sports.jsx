@@ -37,11 +37,12 @@ function Sports() {
   }
 
   return (<>{
-    context.loading? <span className="loader absolute top-1/2 left-1/2	"></span>:
+    context.loading? <div><span className="loader"></span></div>:
     <form
-      className="w-[90%] lg:w-2/4 mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow"
+      className="w-[90%] lg:w-2/4 mx-auto my-8 p-6 bg-white border border-gray-200 rounded-lg shadow"
       onSubmit={handleSubmit(formSubmit)}
     >
+    <h1 className="text-2xl">Register your team for a sport</h1>
       <label htmlFor="sport" className="form-label">
         Choose a sport:
       </label>

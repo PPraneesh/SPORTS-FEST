@@ -7,7 +7,8 @@ function Home() {
   return (
     <div className="flex flex-col justify-center">
       <h1 className="text-4xl mx-auto">SPORTS FEST</h1>
-      <Carousel arr={arr}/>
+      <Carousel images={arr}/>
+      <h1 className="text-3xl mt-4 mb-2 mx-auto">Available sports for registeration:</h1>
 <div className="flex flex-wrap justify-center">
         {Object.keys(sports).map((sport) => {
           return (
